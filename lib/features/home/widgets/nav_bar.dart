@@ -24,17 +24,17 @@ class NavBar extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 _NavBarButton(
-                  index: 1,
-                  active: state is HomeInitial,
-                  onPressed: () {
-                    context.read<HomeBloc>().add(ChangePageEvent(index: 0));
-                  },
-                ),
-                _NavBarButton(
                   index: 2,
                   active: state is HomeNews,
                   onPressed: () {
                     context.read<HomeBloc>().add(ChangePageEvent(index: 1));
+                  },
+                ),
+                _NavBarButton(
+                  index: 1,
+                  active: state is HomeInitial,
+                  onPressed: () {
+                    context.read<HomeBloc>().add(ChangePageEvent(index: 0));
                   },
                 ),
                 _NavBarButton(

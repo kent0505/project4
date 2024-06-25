@@ -1,11 +1,12 @@
 import 'package:go_router/go_router.dart';
-import 'package:project4/features/splash/onboard_page.dart';
 
-import '../../features/home/pages/home_page.dart';
 import '../../features/splash/splash_page.dart';
+import '../../features/splash/onboard_page.dart';
+import '../../features/splash/first_card_page.dart';
+import '../../features/home/pages/home_page.dart';
 
 final routerConfig = GoRouter(
-  initialLocation: '/onboard',
+  initialLocation: '/home',
   routes: [
     GoRoute(
       path: '/',
@@ -14,6 +15,10 @@ final routerConfig = GoRouter(
     GoRoute(
       path: '/onboard',
       builder: (context, state) => const OnboardPage(),
+    ),
+    GoRoute(
+      path: '/first-card',
+      builder: (context, state) => const FirstCardPage(),
     ),
     GoRoute(
       path: '/home',

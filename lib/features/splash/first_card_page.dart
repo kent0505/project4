@@ -1,6 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:project4/core/utils.dart';
+import 'package:project4/features/splash/bloc/first_card_bloc.dart';
 
+import '../../core/models/transport.dart';
 import '../../core/widgets/buttons/primary_button.dart';
+import '../transport/bloc/transport_bloc.dart';
 import 'widgets/title_text.dart';
 import 'widgets/transport_condition.dart';
 import 'widgets/transport_count.dart';
@@ -51,7 +56,23 @@ class FirstCardPage extends StatelessWidget {
               padding: const EdgeInsets.only(bottom: 64, left: 30, right: 30),
               child: PrimaryButton(
                 title: 'Continue',
-                onPressed: () {},
+                onPressed: () {
+                  context.read<TransportBloc>().add(
+                        AddTransportEvent(
+                          transport: Transport(
+                            id: getCurrentTimestamp(),
+                            type: context.read<FirstCardBloc>().type,
+                            count: context.read<FirstCardBloc>().count,
+                            condition: context.read<FirstCardBloc>().condition,
+                            price: '',
+                            rentTime: '',
+                            who: '',
+                            comment: '',
+                            cashPayment: true,
+                          ),
+                        ),
+                      );
+                },
               ),
             ),
           ),

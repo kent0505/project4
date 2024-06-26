@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../core/config/app_colors.dart';
+import '../../../core/utils.dart';
 import '../bloc/first_card_bloc.dart';
 import 'your_version_field.dart';
 
@@ -27,13 +28,6 @@ class _TransportConditionState extends State<TransportCondition> {
 
   bool getCurrent(String condition) {
     return context.read<FirstCardBloc>().condition == condition;
-  }
-
-  Color getColor(String condition) {
-    if (condition == 'Perfect') return AppColors.green;
-    if (condition == 'It\'s good') return AppColors.orange;
-    if (condition == 'Old') return AppColors.red;
-    return Colors.white;
   }
 
   @override

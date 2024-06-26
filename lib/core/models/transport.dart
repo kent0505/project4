@@ -7,30 +7,29 @@ class Transport {
   @HiveField(1)
   String type;
   @HiveField(2)
-  String count;
-  @HiveField(3)
-  String condition;
-  @HiveField(4)
   String price;
+  @HiveField(3)
+  String who;
+  @HiveField(4)
+  String payment;
   @HiveField(5)
   String rentTime;
+  //
   @HiveField(6)
-  String who;
-  @HiveField(7)
   String comment;
   @HiveField(7)
-  bool cashPayment;
+  String condition;
 
   Transport({
     required this.id,
     required this.type,
-    required this.count,
-    required this.condition,
     required this.price,
-    required this.rentTime,
     required this.who,
+    required this.payment,
+    required this.rentTime,
+    //
     required this.comment,
-    required this.cashPayment,
+    required this.condition,
   });
 }
 
@@ -43,13 +42,13 @@ class TransportAdapter extends TypeAdapter<Transport> {
     return Transport(
       id: reader.read(),
       type: reader.read(),
-      count: reader.read(),
-      condition: reader.read(),
       price: reader.read(),
-      rentTime: reader.read(),
       who: reader.read(),
+      payment: reader.read(),
+      rentTime: reader.read(),
+      //
       comment: reader.read(),
-      cashPayment: reader.read(),
+      condition: reader.read(),
     );
   }
 
@@ -57,12 +56,12 @@ class TransportAdapter extends TypeAdapter<Transport> {
   void write(BinaryWriter writer, Transport obj) {
     writer.write(obj.id);
     writer.write(obj.type);
-    writer.write(obj.count);
-    writer.write(obj.condition);
     writer.write(obj.price);
-    writer.write(obj.rentTime);
     writer.write(obj.who);
+    writer.write(obj.payment);
+    writer.write(obj.rentTime);
+    //
     writer.write(obj.comment);
-    writer.write(obj.cashPayment);
+    writer.write(obj.condition);
   }
 }

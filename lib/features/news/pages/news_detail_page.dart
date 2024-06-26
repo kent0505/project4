@@ -13,51 +13,48 @@ class NewsDetailPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Padding(
-        padding: EdgeInsets.only(top: MediaQuery.of(context).viewPadding.top),
-        child: Column(
-          children: [
-            const CustomAppBar(),
-            Expanded(
-              child: ListView(
-                padding: const EdgeInsets.all(25),
-                children: [
-                  ClipRRect(
-                    borderRadius: BorderRadius.circular(4),
-                    child: SizedBox(
-                      height: 150,
-                      width: MediaQuery.of(context).size.width - 50 > 400
-                          ? 400
-                          : double.infinity,
-                      child: CachedNetworkImage(
-                        imageUrl: news.imgUrl,
-                        fit: BoxFit.cover,
-                      ),
+      body: Column(
+        children: [
+          const CustomAppBar(),
+          Expanded(
+            child: ListView(
+              padding: const EdgeInsets.all(25),
+              children: [
+                ClipRRect(
+                  borderRadius: BorderRadius.circular(4),
+                  child: SizedBox(
+                    height: 150,
+                    width: MediaQuery.of(context).size.width - 50 > 400
+                        ? 400
+                        : double.infinity,
+                    child: CachedNetworkImage(
+                      imageUrl: news.imgUrl,
+                      fit: BoxFit.cover,
                     ),
                   ),
-                  const SizedBox(height: 24),
-                  Text(
-                    news.title,
-                    style: const TextStyle(
-                      color: Colors.white,
-                      fontSize: 20,
-                      fontWeight: FontWeight.w600,
-                    ),
+                ),
+                const SizedBox(height: 24),
+                Text(
+                  news.title,
+                  style: const TextStyle(
+                    color: Colors.white,
+                    fontSize: 20,
+                    fontWeight: FontWeight.w600,
                   ),
-                  const SizedBox(height: 13),
-                  Text(
-                    news.body,
-                    style: TextStyle(
-                      color: AppColors.txt,
-                      fontSize: 20,
-                      fontWeight: FontWeight.w600,
-                    ),
+                ),
+                const SizedBox(height: 13),
+                Text(
+                  news.body,
+                  style: TextStyle(
+                    color: AppColors.txt,
+                    fontSize: 20,
+                    fontWeight: FontWeight.w600,
                   ),
-                ],
-              ),
+                ),
+              ],
             ),
-          ],
-        ),
+          ),
+        ],
       ),
     );
   }

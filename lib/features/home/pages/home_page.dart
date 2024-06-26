@@ -7,6 +7,7 @@ import '../../transport/bloc/transport_bloc.dart';
 import '../bloc/home_bloc.dart';
 import '../widgets/add_new_button.dart';
 import '../widgets/empty_data.dart';
+import '../widgets/first_card.dart';
 import '../widgets/nav_bar.dart';
 import '../widgets/transport_card.dart';
 
@@ -74,11 +75,14 @@ class _HomePage extends StatelessWidget {
                         ),
                       ),
                     ),
+                    const FirstCard(),
+                    const SizedBox(height: 10),
                     ...List.generate(
                       state.transports.length,
                       (index) {
                         return TransportCard(
                           transport: state.transports[index],
+                          index: index,
                         );
                       },
                     ),

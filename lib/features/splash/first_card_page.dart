@@ -1,11 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
+import 'package:project4/core/models/first.dart';
 
-import '../../core/models/transport.dart';
 import '../../core/utils.dart';
 import '../../core/widgets/buttons/primary_button.dart';
-import '../transport/bloc/transport_bloc.dart';
 import 'bloc/first_card_bloc.dart';
 import 'widgets/title_text.dart';
 import 'widgets/transport_condition.dart';
@@ -30,22 +29,11 @@ class _FirstCardPageState extends State<FirstCardPage> {
   }
 
   void onContinue() async {
-    context.read<TransportBloc>().add(
-          AddTransportEvent(
-            transport: Transport(
-              id: getCurrentTimestamp(),
-              type: context.read<FirstCardBloc>().type,
-              count: context.read<FirstCardBloc>().count,
-              condition: context.read<FirstCardBloc>().condition,
-              price: '',
-              rentTime: '',
-              who: '',
-              comment: '',
-              cashPayment: true,
-            ),
-          ),
-        );
-    await saveBool('onboarding', false).then((value) {
+    await saveFirsts(First(
+      type: context.read<FirstCardBloc>().type,
+      count: context.read<FirstCardBloc>().count,
+      condition: context.read<FirstCardBloc>().condition,
+    )).then((value) {
       context.go('/home');
     });
   }

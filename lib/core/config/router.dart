@@ -6,6 +6,7 @@ import '../../features/splash/splash_page.dart';
 import '../../features/splash/onboard_page.dart';
 import '../../features/splash/first_card_page.dart';
 import '../../features/home/pages/home_page.dart';
+import '../../features/transport/pages/add_transport_page.dart';
 
 final routerConfig = GoRouter(
   initialLocation: '/',
@@ -31,6 +32,10 @@ final routerConfig = GoRouter(
       builder: (context, state) => NewsDetailPage(
         news: state.extra as News,
       ),
+    ),
+    GoRoute(
+      path: '/add',
+      builder: (context, state) => const AddTransportPage(),
     ),
   ],
 );

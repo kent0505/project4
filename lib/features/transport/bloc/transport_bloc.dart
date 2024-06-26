@@ -37,7 +37,7 @@ class TransportBloc extends Bloc<TransportEvent, TransportState> {
           transport.rentTime = event.transport.rentTime;
           transport.who = event.transport.who;
           transport.comment = event.transport.comment;
-          transport.cashPayment = event.transport.cashPayment;
+          transport.payment = event.transport.payment;
         }
       }
       _transports = await _service.updateTransports();

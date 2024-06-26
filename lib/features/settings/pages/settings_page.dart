@@ -3,70 +3,86 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 
 import '../../../core/config/app_colors.dart';
+import '../../../core/widgets/nav_bar_title.dart';
 
 class SettingsPage extends StatelessWidget {
   const SettingsPage({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 25),
+    return const Padding(
+      padding: EdgeInsets.symmetric(horizontal: 25),
       child: Column(
         children: [
-          const SizedBox(height: 32),
-          const Center(
-            child: Text(
-              'Settings',
-              style: TextStyle(
-                color: Colors.white,
-                fontSize: 32,
-                fontWeight: FontWeight.w500,
-                fontFamily: 'Poppins',
-              ),
-            ),
-          ),
-          const SizedBox(height: 22),
-          Container(
-            height: 150,
-            width: 150,
-            decoration: BoxDecoration(
-              color: AppColors.settingsGrey,
-              borderRadius: BorderRadius.circular(75),
-            ),
-          ),
-          const SizedBox(height: 16),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              const Text(
-                'Edit profile',
-                style: TextStyle(
-                  color: Colors.white,
-                  fontSize: 16,
-                  fontWeight: FontWeight.w500,
-                  fontFamily: 'Poppins',
-                ),
-              ),
-              const SizedBox(width: 8),
-              Image.asset('assets/icons/edit.png', height: 20),
-            ],
-          ),
-          const SizedBox(height: 55),
-          const _SettingsTile(
+          SizedBox(height: 32),
+          PageTitle('Settings'),
+          SizedBox(height: 22),
+          _ProfilePhoto(),
+          SizedBox(height: 16),
+          _EditButton(),
+          SizedBox(height: 55),
+          _SettingsTile(
             title: 'Privacy police',
             asset: 'privacy',
           ),
-          const SizedBox(height: 15),
-          const _SettingsTile(
+          SizedBox(height: 15),
+          _SettingsTile(
             title: 'Terms of feed',
             image: 'terms.png',
           ),
-          const SizedBox(height: 15),
-          const _SettingsTile(
+          SizedBox(height: 15),
+          _SettingsTile(
             title: 'Support page',
             image: 'question.png',
           ),
         ],
+      ),
+    );
+  }
+}
+
+class _ProfilePhoto extends StatelessWidget {
+  const _ProfilePhoto();
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      height: 150,
+      width: 150,
+      decoration: BoxDecoration(
+        color: AppColors.settingsGrey,
+        borderRadius: BorderRadius.circular(75),
+      ),
+    );
+  }
+}
+
+class _EditButton extends StatelessWidget {
+  const _EditButton();
+
+  @override
+  Widget build(BuildContext context) {
+    return SizedBox(
+      height: 24,
+      child: CupertinoButton(
+        onPressed: () {},
+        padding: EdgeInsets.zero,
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            const Text(
+              'Edit profile',
+              style: TextStyle(
+                color: Colors.white,
+                fontSize: 16,
+                fontWeight: FontWeight.w500,
+                fontFamily: 'Poppins',
+              ),
+            ),
+            const SizedBox(width: 8),
+            Image.asset('assets/icons/edit.png', height: 20),
+          ],
+        ),
       ),
     );
   }

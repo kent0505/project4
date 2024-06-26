@@ -21,56 +21,58 @@ class _NewsPageState extends State<NewsPage> {
 
   @override
   Widget build(BuildContext context) {
-    return ListView(
-      padding: const EdgeInsets.symmetric(horizontal: 25),
-      children: [
-        const SizedBox(height: 32),
-        const PageTitle('News'),
-        const SizedBox(height: 16),
-        CarouselSlider.builder(
-          options: CarouselOptions(
-            height: 120,
-            enableInfiniteScroll: false,
-            enlargeCenterPage: true,
-            viewportFraction: 1,
-            onPageChanged: (index, reason) {
-              setState(() {
-                _index = index;
-              });
+    return Padding(
+      padding: const EdgeInsets.only(bottom: 75),
+      child: ListView(
+        children: [
+          const SizedBox(height: 32),
+          const PageTitle('News'),
+          const SizedBox(height: 16),
+          CarouselSlider.builder(
+            options: CarouselOptions(
+              height: 120,
+              enableInfiniteScroll: false,
+              enlargeCenterPage: true,
+              viewportFraction: 1,
+              onPageChanged: (index, reason) {
+                setState(() {
+                  _index = index;
+                });
+              },
+            ),
+            itemCount: carouselNews.length,
+            itemBuilder: (context, index, realIndex) {
+              return CarouselImage(
+                carouselNews: carouselNews[index],
+                index: index,
+              );
             },
           ),
-          itemCount: carouselNews.length,
-          itemBuilder: (context, index, realIndex) {
-            return CarouselImage(
-              carouselNews: carouselNews[index],
-              index: index,
-            );
-          },
-        ),
-        const SizedBox(height: 10),
-        Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            CarouselIndicator(_index == 0),
-            CarouselIndicator(_index == 1),
-            CarouselIndicator(_index == 2),
-            CarouselIndicator(_index == 3),
-          ],
-        ),
-        const SizedBox(height: 20),
-        ...List<Widget>.generate(
-          news.length,
-          (index) {
-            return NewsCard(
-              news: news[index],
-              ago: index,
-              onPressed: () {
-                context.push('/news-detail', extra: news[index]);
-              },
-            );
-          },
-        ),
-      ],
+          const SizedBox(height: 10),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              CarouselIndicator(_index == 0),
+              CarouselIndicator(_index == 1),
+              CarouselIndicator(_index == 2),
+              CarouselIndicator(_index == 3),
+            ],
+          ),
+          const SizedBox(height: 20),
+          ...List<Widget>.generate(
+            news.length,
+            (index) {
+              return NewsCard(
+                news: news[index],
+                ago: index,
+                onPressed: () {
+                  context.push('/news-detail', extra: news[index]);
+                },
+              );
+            },
+          ),
+        ],
+      ),
     );
   }
 }

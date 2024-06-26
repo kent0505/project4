@@ -12,7 +12,7 @@ class TransportCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       height: 90,
-      margin: const EdgeInsets.symmetric(vertical: 10),
+      margin: const EdgeInsets.symmetric(vertical: 10, horizontal: 25),
       decoration: BoxDecoration(
         color: const Color(0xff4F4F4F).withOpacity(0.4),
         borderRadius: BorderRadius.circular(8),

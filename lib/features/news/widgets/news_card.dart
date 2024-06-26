@@ -21,7 +21,7 @@ class NewsCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return CupertinoButton(
       onPressed: onPressed,
-      padding: EdgeInsets.zero,
+      padding: const EdgeInsets.symmetric(horizontal: 25),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [

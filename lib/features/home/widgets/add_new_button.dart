@@ -14,7 +14,11 @@ class AddNewButton extends StatelessWidget {
     return Align(
       alignment: Alignment.bottomCenter,
       child: Padding(
-        padding: const EdgeInsets.only(bottom: 120),
+        padding: const EdgeInsets.only(
+          bottom: 120,
+          right: 25,
+          left: 25,
+        ),
         child: PrimaryButton(
           title: 'Add new transport',
           onPressed: () {

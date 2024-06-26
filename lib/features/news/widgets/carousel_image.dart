@@ -15,39 +15,42 @@ class CarouselImage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Stack(
-      children: [
-        ClipRRect(
-          borderRadius: BorderRadius.circular(12),
-          child: SizedBox(
-            height: 120,
-            width: MediaQuery.of(context).size.width - 50 > 400
-                ? 400
-                : double.infinity,
-            child: CachedNetworkImage(
-              imageUrl: carouselNews.imgUrl,
-              fit: BoxFit.cover,
-            ),
-          ),
-        ),
-        Positioned(
-          left: 6,
-          bottom: 6,
-          child: SizedBox(
-            width: 150,
-            child: Text(
-              carouselNews.title,
-              textAlign: TextAlign.center,
-              style: const TextStyle(
-                color: Colors.white,
-                fontSize: 12,
-                fontWeight: FontWeight.w500,
-                fontFamily: 'Poppins',
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 25),
+      child: Stack(
+        children: [
+          ClipRRect(
+            borderRadius: BorderRadius.circular(12),
+            child: SizedBox(
+              height: 120,
+              width: MediaQuery.of(context).size.width - 50 > 400
+                  ? 400
+                  : double.infinity,
+              child: CachedNetworkImage(
+                imageUrl: carouselNews.imgUrl,
+                fit: BoxFit.cover,
               ),
             ),
           ),
-        ),
-      ],
+          Positioned(
+            left: 6,
+            bottom: 6,
+            child: SizedBox(
+              width: 150,
+              child: Text(
+                carouselNews.title,
+                textAlign: TextAlign.center,
+                style: const TextStyle(
+                  color: Colors.white,
+                  fontSize: 12,
+                  fontWeight: FontWeight.w500,
+                  fontFamily: 'Poppins',
+                ),
+              ),
+            ),
+          ),
+        ],
+      ),
     );
   }
 }

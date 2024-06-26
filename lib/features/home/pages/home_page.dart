@@ -52,16 +52,16 @@ class _HomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 25),
-      child: Stack(
-        children: [
-          BlocBuilder<TransportBloc, TransportState>(
-            builder: (context, state) {
-              if (state is TransportsLoadedState) {
-                if (state.transports.isEmpty) return const EmptyData();
+    return Stack(
+      children: [
+        BlocBuilder<TransportBloc, TransportState>(
+          builder: (context, state) {
+            if (state is TransportsLoadedState) {
+              if (state.transports.isEmpty) return const EmptyData();
 
-                return Column(
+              return Padding(
+                padding: const EdgeInsets.only(bottom: 75),
+                child: ListView(
                   children: [
                     const SizedBox(height: 18),
                     const Center(
@@ -82,16 +82,17 @@ class _HomePage extends StatelessWidget {
                         );
                       },
                     ),
+                    const SizedBox(height: 106),
                   ],
-                );
-              }
+                ),
+              );
+            }
 
-              return Container();
-            },
-          ),
-          const AddNewButton(),
-        ],
-      ),
+            return Container();
+          },
+        ),
+        const AddNewButton(),
+      ],
     );
   }
 }

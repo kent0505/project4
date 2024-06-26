@@ -56,10 +56,12 @@ class _TransportConditionState extends State<TransportCondition> {
             child: Row(
               children: [
                 const SizedBox(width: 40),
+                const Spacer(),
                 BlocBuilder<FirstCardBloc, FirstCardState>(
                   builder: (context, state) {
                     if (state is FirstCardSelected) {
                       return Expanded(
+                        flex: 10,
                         child: Center(
                           child: Text(
                             state.condition,
@@ -78,6 +80,7 @@ class _TransportConditionState extends State<TransportCondition> {
                     }
                   },
                 ),
+                const Spacer(),
                 AnimatedRotation(
                   turns: expanded ? 1 / 2 : 1,
                   duration: const Duration(milliseconds: 300),

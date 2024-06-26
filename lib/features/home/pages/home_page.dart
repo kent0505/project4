@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../core/widgets/buttons/primary_button.dart';
+import '../../news/pages/news_page.dart';
 import '../../settings/pages/settings_page.dart';
 import '../bloc/home_bloc.dart';
 import '../widgets/nav_bar.dart';
@@ -33,7 +34,7 @@ class _HomePageState extends State<HomePage> {
                 }
 
                 if (state is HomeNews) {
-                  return const Text('News');
+                  return const NewsPage();
                 }
 
                 return const _HomePage();

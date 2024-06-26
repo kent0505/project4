@@ -47,7 +47,8 @@ class SettingsPage extends StatelessWidget {
                   fontFamily: 'Poppins',
                 ),
               ),
-              SvgPicture.asset('assets/icons/edit.svg'),
+              const SizedBox(width: 8),
+              Image.asset('assets/icons/edit.png', height: 20),
             ],
           ),
           const SizedBox(height: 55),
@@ -58,12 +59,12 @@ class SettingsPage extends StatelessWidget {
           const SizedBox(height: 15),
           const _SettingsTile(
             title: 'Terms of feed',
-            asset: 'terms',
+            image: 'terms.png',
           ),
           const SizedBox(height: 15),
           const _SettingsTile(
             title: 'Support page',
-            asset: 'support',
+            image: 'question.png',
           ),
         ],
       ),
@@ -74,11 +75,13 @@ class SettingsPage extends StatelessWidget {
 class _SettingsTile extends StatelessWidget {
   const _SettingsTile({
     required this.title,
-    required this.asset,
+    this.asset = '',
+    this.image = '',
   });
 
   final String title;
   final String asset;
+  final String image;
 
   @override
   Widget build(BuildContext context) {
@@ -94,7 +97,9 @@ class _SettingsTile extends StatelessWidget {
         child: Row(
           children: [
             const SizedBox(width: 12),
-            SvgPicture.asset('assets/icons/$asset.svg'),
+            image.isNotEmpty
+                ? Image.asset('assets/icons/$image', height: 24)
+                : SvgPicture.asset('assets/icons/$asset.svg'),
             const Spacer(),
             Text(
               title,

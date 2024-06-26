@@ -79,9 +79,10 @@ class _NavBarButton extends StatelessWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            index == 3
-                ? Image.asset('assets/icons/3.png')
-                : SvgPicture.asset('assets/icons/$index.svg'),
+            SvgPicture.asset(
+              'assets/icons/$index.svg',
+              height: 28,
+            ),
           ],
         ),
       ),

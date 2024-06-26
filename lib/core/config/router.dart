@@ -1,4 +1,5 @@
 import 'package:go_router/go_router.dart';
+import 'package:project4/features/transport/pages/transport_detail.dart';
 
 import '../../features/news/models/news.dart';
 import '../../features/news/pages/news_detail_page.dart';
@@ -7,6 +8,8 @@ import '../../features/splash/onboard_page.dart';
 import '../../features/splash/first_card_page.dart';
 import '../../features/home/pages/home_page.dart';
 import '../../features/transport/pages/add_transport_page.dart';
+import '../../features/transport/pages/edit_transport_page.dart';
+import '../models/transport.dart';
 
 final routerConfig = GoRouter(
   initialLocation: '/',
@@ -36,6 +39,18 @@ final routerConfig = GoRouter(
     GoRoute(
       path: '/add',
       builder: (context, state) => const AddTransportPage(),
+    ),
+    GoRoute(
+      path: '/detail',
+      builder: (context, state) => TransportDetail(
+        transport: state.extra as Transport,
+      ),
+    ),
+    GoRoute(
+      path: '/edit',
+      builder: (context, state) => EditTransportPage(
+        transport: state.extra as Transport,
+      ),
     ),
   ],
 );

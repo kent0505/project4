@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:go_router/go_router.dart';
 
 import '../../../core/config/app_colors.dart';
 import '../../../core/models/transport.dart';
@@ -43,7 +44,9 @@ class TransportCard extends StatelessWidget {
             borderRadius: BorderRadius.circular(8),
           ),
           child: CupertinoButton(
-            onPressed: () {},
+            onPressed: () {
+              context.push('/detail', extra: transport);
+            },
             padding: EdgeInsets.zero,
             child: Row(
               children: [

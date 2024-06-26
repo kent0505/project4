@@ -5,7 +5,9 @@ import 'package:go_router/go_router.dart';
 import '../config/app_colors.dart';
 
 class CustomAppBar extends StatelessWidget {
-  const CustomAppBar({super.key});
+  const CustomAppBar({super.key, this.onEdit});
+
+  final void Function()? onEdit;
 
   @override
   Widget build(BuildContext context) {
@@ -38,6 +40,24 @@ class CustomAppBar extends StatelessWidget {
               ],
             ),
           ),
+          if (onEdit != null) ...[
+            const Spacer(),
+            CupertinoButton(
+              onPressed: onEdit,
+              padding: EdgeInsets.zero,
+              child: const SizedBox(
+                width: 50,
+                child: Text(
+                  'Edit',
+                  style: TextStyle(
+                    color: AppColors.blue,
+                    fontSize: 16,
+                    fontWeight: FontWeight.w500,
+                  ),
+                ),
+              ),
+            ),
+          ],
         ],
       ),
     );

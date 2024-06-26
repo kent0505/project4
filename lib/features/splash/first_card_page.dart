@@ -1,18 +1,54 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:project4/core/utils.dart';
-import 'package:project4/features/splash/bloc/first_card_bloc.dart';
+import 'package:go_router/go_router.dart';
 
 import '../../core/models/transport.dart';
+import '../../core/utils.dart';
 import '../../core/widgets/buttons/primary_button.dart';
 import '../transport/bloc/transport_bloc.dart';
+import 'bloc/first_card_bloc.dart';
 import 'widgets/title_text.dart';
 import 'widgets/transport_condition.dart';
 import 'widgets/transport_count.dart';
 import 'widgets/transport_type.dart';
 
-class FirstCardPage extends StatelessWidget {
+class FirstCardPage extends StatefulWidget {
   const FirstCardPage({super.key});
+
+  @override
+  State<FirstCardPage> createState() => _FirstCardPageState();
+}
+
+class _FirstCardPageState extends State<FirstCardPage> {
+  bool getActive() {
+    if (context.read<FirstCardBloc>().type.isNotEmpty &&
+        context.read<FirstCardBloc>().count.isNotEmpty &&
+        context.read<FirstCardBloc>().condition.isNotEmpty) {
+      return true;
+    }
+    return false;
+  }
+
+  void onContinue() async {
+    context.read<TransportBloc>().add(
+          AddTransportEvent(
+            transport: Transport(
+              id: getCurrentTimestamp(),
+              type: context.read<FirstCardBloc>().type,
+              count: context.read<FirstCardBloc>().count,
+              condition: context.read<FirstCardBloc>().condition,
+              price: '',
+              rentTime: '',
+              who: '',
+              comment: '',
+              cashPayment: true,
+            ),
+          ),
+        );
+    await saveBool('onboarding', false).then((value) {
+      context.go('/home');
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -50,31 +86,24 @@ class FirstCardPage extends StatelessWidget {
               SizedBox(height: 144),
             ],
           ),
-          Align(
-            alignment: Alignment.bottomCenter,
-            child: Padding(
-              padding: const EdgeInsets.only(bottom: 64, left: 30, right: 30),
-              child: PrimaryButton(
-                title: 'Continue',
-                onPressed: () {
-                  context.read<TransportBloc>().add(
-                        AddTransportEvent(
-                          transport: Transport(
-                            id: getCurrentTimestamp(),
-                            type: context.read<FirstCardBloc>().type,
-                            count: context.read<FirstCardBloc>().count,
-                            condition: context.read<FirstCardBloc>().condition,
-                            price: '',
-                            rentTime: '',
-                            who: '',
-                            comment: '',
-                            cashPayment: true,
-                          ),
-                        ),
-                      );
-                },
-              ),
-            ),
+          BlocBuilder<FirstCardBloc, FirstCardState>(
+            builder: (context, state) {
+              return Align(
+                alignment: Alignment.bottomCenter,
+                child: Padding(
+                  padding: const EdgeInsets.only(
+                    bottom: 64,
+                    left: 30,
+                    right: 30,
+                  ),
+                  child: PrimaryButton(
+                    title: 'Continue',
+                    active: getActive(),
+                    onPressed: onContinue,
+                  ),
+                ),
+              );
+            },
           ),
         ],
       ),

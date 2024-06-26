@@ -74,7 +74,6 @@ class _HomePage extends StatelessWidget {
                         ),
                       ),
                     ),
-                    const SizedBox(height: 10),
                     ...List.generate(
                       state.transports.length,
                       (index) {

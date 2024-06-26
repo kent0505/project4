@@ -8,7 +8,7 @@ import '../../features/splash/first_card_page.dart';
 import '../../features/home/pages/home_page.dart';
 
 final routerConfig = GoRouter(
-  initialLocation: '/home',
+  initialLocation: '/',
   routes: [
     GoRoute(
       path: '/',

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 
 import '../../core/widgets/buttons/primary_button.dart';
 
@@ -23,7 +24,6 @@ class _OnboardPageState extends State<OnboardPage> {
     return Scaffold(
       body: PageView(
         controller: controller,
-        physics: const BouncingScrollPhysics(),
         scrollDirection: Axis.horizontal,
         children: [
           // PAGE 1
@@ -71,11 +71,7 @@ class _OnboardPageState extends State<OnboardPage> {
                     subtitle: 'Write full information about\nyour watercraft',
                     buttonText: 'Go',
                     onPressed: () {
-                      controller.animateToPage(
-                        controller.page!.toInt() - 1,
-                        duration: const Duration(milliseconds: 200),
-                        curve: Curves.easeIn,
-                      );
+                      context.go('/first-card');
                     },
                   ),
                 ),

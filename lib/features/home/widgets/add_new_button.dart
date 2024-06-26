@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../core/models/transport.dart';
+import '../../../core/utils.dart';
 import '../../../core/widgets/buttons/primary_button.dart';
 import '../../transport/bloc/transport_bloc.dart';
 
@@ -20,14 +21,14 @@ class AddNewButton extends StatelessWidget {
             context.read<TransportBloc>().add(
                   AddTransportEvent(
                     transport: Transport(
-                      id: 1,
-                      type: 'Boat',
+                      id: getCurrentTimestamp(),
+                      type: 'Яхта',
                       count: '1-3',
-                      condition: 'Perfect',
-                      price: '150',
+                      condition: 'Old',
+                      price: '160',
                       rentTime: 'Weekly',
                       who: 'Otabek',
-                      comment: 'Aaa',
+                      comment: 'Bbb',
                       cashPayment: true,
                     ),
                   ),

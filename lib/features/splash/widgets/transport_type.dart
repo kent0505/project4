@@ -1,10 +1,10 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:project4/features/splash/widgets/your_version_field.dart';
 
 import '../../../core/config/app_colors.dart';
 import '../bloc/first_card_bloc.dart';
+import 'your_version_field.dart';
 
 class TransportType extends StatefulWidget {
   const TransportType({super.key});

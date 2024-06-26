@@ -8,8 +8,8 @@ class AppColors {
   static const Color green = Color(0xff07B60E);
   static const Color orange = Color(0xffD16400);
   static const Color red = Color(0xffF80000);
+  static const Color disabledButton = Color(0xff243d4f);
   static Color expansion = const Color(0xff676767).withOpacity(0.5);
   static Color txt = const Color(0xffffffff).withOpacity(0.5);
-  static Color disabledButton = const Color(0xff303030).withOpacity(0.7);
   static Color settingsGrey = const Color(0xff9D9D9D).withOpacity(0.4);
 }

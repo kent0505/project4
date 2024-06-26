@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 part 'first_card_event.dart';
@@ -10,15 +12,31 @@ class FirstCardBloc extends Bloc<FirstCardEvent, FirstCardState> {
 
   FirstCardBloc() : super(FirstCardInitial()) {
     on<SelectTypeEvent>((event, emit) {
+      log(event.type);
       type = event.type;
+      emit(FirstCardSelected(
+        type: type,
+        count: count,
+        condition: condition,
+      ));
     });
 
     on<SelectCountEvent>((event, emit) {
       count = event.count;
+      emit(FirstCardSelected(
+        type: type,
+        count: count,
+        condition: condition,
+      ));
     });
 
     on<SelectConditionEvent>((event, emit) {
       condition = event.condition;
+      emit(FirstCardSelected(
+        type: type,
+        count: count,
+        condition: condition,
+      ));
     });
   }
 }

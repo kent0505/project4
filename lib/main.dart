@@ -5,6 +5,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'core/config/router.dart';
 import 'core/config/themes.dart';
 import 'features/home/bloc/home_bloc.dart';
+import 'features/splash/bloc/first_card_bloc.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -23,6 +24,7 @@ class MyApp extends StatelessWidget {
     return MultiBlocProvider(
       providers: [
         BlocProvider(create: (context) => HomeBloc()),
+        BlocProvider(create: (context) => FirstCardBloc()),
       ],
       child: MaterialApp.router(
         debugShowCheckedModeBanner: false,

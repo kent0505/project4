@@ -21,11 +21,9 @@ class TransportBloc extends Bloc<TransportEvent, TransportState> {
     });
 
     on<AddTransportEvent>((event, emit) async {
-      // if (event.transport.name.isNotEmpty) {
       _service.transports.add(event.transport);
       _transports = await _service.updateTransports();
       emit(TransportsLoadedState(transports: _transports));
-      // }
     });
 
     on<EditTransportEvent>((event, emit) async {

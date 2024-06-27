@@ -5,8 +5,13 @@ import 'package:go_router/go_router.dart';
 import '../config/app_colors.dart';
 
 class CustomAppBar extends StatelessWidget {
-  const CustomAppBar({super.key, this.onEdit});
+  const CustomAppBar({
+    super.key,
+    this.onBack,
+    this.onEdit,
+  });
 
+  final void Function()? onBack;
   final void Function()? onEdit;
 
   @override
@@ -18,9 +23,10 @@ class CustomAppBar extends StatelessWidget {
       child: Row(
         children: [
           CupertinoButton(
-            onPressed: () {
-              context.pop();
-            },
+            onPressed: onBack ??
+                () {
+                  context.pop();
+                },
             padding: EdgeInsets.zero,
             child: const Row(
               children: [

@@ -60,7 +60,7 @@ class _FirstCardPageState extends State<FirstCardPage> {
                 ),
               ),
               SizedBox(height: 34),
-              TitleText('Цhat type of your water transport?'),
+              TitleText('What type of your water transport?'),
               SizedBox(height: 9),
               TransportType(),
               SizedBox(height: 24),

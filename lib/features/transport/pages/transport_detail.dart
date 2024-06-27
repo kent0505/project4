@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:go_router/go_router.dart';
 import 'package:project4/core/widgets/buttons/primary_button.dart';
+import 'package:project4/features/transport/bloc/transport_bloc.dart';
 
 import '../../../core/config/app_colors.dart';
 import '../../../core/models/transport.dart';
@@ -40,13 +42,13 @@ class TransportDetail extends StatelessWidget {
           const SizedBox(height: 16),
           _DataRow(
             title: 'Rental cost',
-            data: '${transport.price} \$',
+            data: transport.price.isEmpty ? '-' : '${transport.price} \$',
             asset: 'coins',
           ),
           const SizedBox(height: 16),
           _DataRow(
             title: 'Payment type',
-            data: transport.payment,
+            data: transport.payment.isEmpty ? '-' : transport.payment,
             asset: 'payment',
           ),
           const SizedBox(height: 16),
@@ -97,7 +99,12 @@ class TransportDetail extends StatelessWidget {
           PrimaryButton(
             title: 'Delete card',
             asset: 'delete',
-            onPressed: () {},
+            onPressed: () {
+              context
+                  .read<TransportBloc>()
+                  .add(DeleteTransportEvent(id: transport.id));
+              context.pop();
+            },
           ),
           const SizedBox(height: 46),
         ],

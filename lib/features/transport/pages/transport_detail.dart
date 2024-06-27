@@ -9,6 +9,7 @@ import '../../../core/config/app_colors.dart';
 import '../../../core/models/transport.dart';
 import '../../../core/utils.dart';
 import '../../../core/widgets/custom_app_bar.dart';
+import '../../../core/widgets/dialog_widget.dart';
 
 class TransportDetail extends StatelessWidget {
   const TransportDetail({super.key, required this.transport});
@@ -102,10 +103,20 @@ class TransportDetail extends StatelessWidget {
               title: 'Delete card',
               asset: 'delete',
               onPressed: () {
-                context
-                    .read<TransportBloc>()
-                    .add(DeleteTransportEvent(id: transport.id));
-                context.pop();
+                showDialog(
+                  context: context,
+                  builder: (context) {
+                    return DialogWidget(
+                      title: 'Delete card?',
+                      onPressed: () {
+                        context
+                            .read<TransportBloc>()
+                            .add(DeleteTransportEvent(id: transport.id));
+                        context.pop();
+                      },
+                    );
+                  },
+                );
               },
             ),
           ),

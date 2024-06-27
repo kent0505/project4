@@ -71,6 +71,7 @@ class _NewsPageState extends State<NewsPage> {
               );
             },
           ),
+          const SizedBox(height: 20),
         ],
       ),
     );

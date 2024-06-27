@@ -3,9 +3,14 @@ import 'package:flutter/material.dart';
 import '../../../core/config/app_colors.dart';
 
 class WhoField extends StatelessWidget {
-  const WhoField({super.key, required this.controller});
+  const WhoField({
+    super.key,
+    required this.controller,
+    required this.onChanged,
+  });
 
   final TextEditingController controller;
+  final Function() onChanged;
 
   @override
   Widget build(BuildContext context) {
@@ -38,6 +43,9 @@ class WhoField extends StatelessWidget {
         ),
         onTapOutside: (event) {
           FocusManager.instance.primaryFocus?.unfocus();
+        },
+        onChanged: (value) {
+          onChanged();
         },
       ),
     );

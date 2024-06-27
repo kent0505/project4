@@ -6,9 +6,14 @@ import '../../../core/utils.dart';
 import '../../splash/widgets/your_version_field.dart';
 
 class AddTransportCondition extends StatefulWidget {
-  const AddTransportCondition({super.key, required this.controller});
+  const AddTransportCondition({
+    super.key,
+    required this.controller,
+    required this.onChanged,
+  });
 
   final TextEditingController controller;
+  final Function() onChanged;
 
   @override
   State<AddTransportCondition> createState() => _AddTransportConditionState();
@@ -21,6 +26,7 @@ class _AddTransportConditionState extends State<AddTransportCondition> {
     setState(() {
       expanded = false;
       widget.controller.text = condition;
+      widget.onChanged();
     });
   }
 

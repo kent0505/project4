@@ -3,9 +3,14 @@ import 'package:flutter/material.dart';
 import '../../../core/config/app_colors.dart';
 
 class CommentField extends StatelessWidget {
-  const CommentField({super.key, required this.controller});
+  const CommentField({
+    super.key,
+    required this.controller,
+    required this.onChanged,
+  });
 
   final TextEditingController controller;
+  final Function() onChanged;
 
   @override
   Widget build(BuildContext context) {
@@ -39,6 +44,9 @@ class CommentField extends StatelessWidget {
         ),
         onTapOutside: (event) {
           FocusManager.instance.primaryFocus?.unfocus();
+        },
+        onChanged: (value) {
+          onChanged();
         },
       ),
     );

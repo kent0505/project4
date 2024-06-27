@@ -4,9 +4,14 @@ import 'package:flutter/material.dart';
 import '../../../core/config/app_colors.dart';
 
 class AddTransportRentTime extends StatefulWidget {
-  const AddTransportRentTime({super.key, required this.controller});
+  const AddTransportRentTime({
+    super.key,
+    required this.controller,
+    required this.onChanged,
+  });
 
   final TextEditingController controller;
+  final Function() onChanged;
 
   @override
   State<AddTransportRentTime> createState() => _AddTransportRentTimeState();
@@ -16,6 +21,7 @@ class _AddTransportRentTimeState extends State<AddTransportRentTime> {
   void onTap(String rentTime) {
     setState(() {
       widget.controller.text = rentTime;
+      widget.onChanged();
     });
   }
 

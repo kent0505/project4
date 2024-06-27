@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
@@ -32,6 +34,36 @@ class _AddTransportPageState extends State<AddTransportPage> {
   final controller6 = TextEditingController();
   final controller7 = TextEditingController();
   bool commentPage = false;
+  bool active = false;
+
+  void checkActive() {
+    setState(() {
+      if (commentPage) {
+        if (controller6.text.isEmpty) {
+          active = false;
+        } else if (controller7.text.isEmpty) {
+          active = false;
+        } else {
+          active = true;
+        }
+      } else {
+        if (controller1.text.isEmpty) {
+          active = false;
+        } else if (controller2.text.isEmpty) {
+          active = false;
+        } else if (controller3.text.isEmpty) {
+          active = false;
+        } else if (controller4.text.isEmpty) {
+          active = false;
+        } else if (controller5.text.isEmpty) {
+          active = false;
+        } else {
+          active = true;
+        }
+        log(active.toString());
+      }
+    });
+  }
 
   @override
   void dispose() {
@@ -85,7 +117,10 @@ class _AddTransportPageState extends State<AddTransportPage> {
                     if (commentPage) ...[
                       const TitleText('Write a comment'),
                       const SizedBox(height: 6),
-                      CommentField(controller: controller6),
+                      CommentField(
+                        controller: controller6,
+                        onChanged: checkActive,
+                      ),
                       const SizedBox(height: 30),
                       const Text(
                         'Ship condition',
@@ -96,27 +131,45 @@ class _AddTransportPageState extends State<AddTransportPage> {
                         ),
                       ),
                       const SizedBox(height: 30),
-                      AddTransportCondition(controller: controller7),
+                      AddTransportCondition(
+                        controller: controller7,
+                        onChanged: checkActive,
+                      ),
                     ] else ...[
                       const TitleText('Type of water transport'),
                       const SizedBox(height: 6),
-                      AddTransportType(controller: controller1),
+                      AddTransportType(
+                        controller: controller1,
+                        onChanged: checkActive,
+                      ),
                       const SizedBox(height: 16),
                       const TitleText('Rental cost'),
                       const SizedBox(height: 6),
-                      PriceField(controller: controller2),
+                      PriceField(
+                        controller: controller2,
+                        onChanged: checkActive,
+                      ),
                       const SizedBox(height: 16),
                       const TitleText('Who rents?'),
                       const SizedBox(height: 6),
-                      WhoField(controller: controller3),
+                      WhoField(
+                        controller: controller3,
+                        onChanged: checkActive,
+                      ),
                       const SizedBox(height: 16),
                       const TitleText('Payment type'),
                       const SizedBox(height: 6),
-                      AddTransportPayment(controller: controller4),
+                      AddTransportPayment(
+                        controller: controller4,
+                        onChanged: checkActive,
+                      ),
                       const SizedBox(height: 16),
                       const TitleText('How long is the lease for'),
                       const SizedBox(height: 6),
-                      AddTransportRentTime(controller: controller5),
+                      AddTransportRentTime(
+                        controller: controller5,
+                        onChanged: checkActive,
+                      ),
                       const SizedBox(height: 112),
                     ]
                   ],
@@ -131,6 +184,7 @@ class _AddTransportPageState extends State<AddTransportPage> {
                     ),
                     child: PrimaryButton(
                       title: commentPage ? 'Add' : 'Continue',
+                      active: active,
                       onPressed: () {
                         if (commentPage) {
                           context.read<TransportBloc>().add(
@@ -151,6 +205,7 @@ class _AddTransportPageState extends State<AddTransportPage> {
                         } else {
                           setState(() {
                             commentPage = true;
+                            active = false;
                           });
                         }
                       },

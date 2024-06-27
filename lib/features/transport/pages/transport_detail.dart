@@ -96,15 +96,18 @@ class TransportDetail extends StatelessWidget {
             ),
           ),
           const Spacer(),
-          PrimaryButton(
-            title: 'Delete card',
-            asset: 'delete',
-            onPressed: () {
-              context
-                  .read<TransportBloc>()
-                  .add(DeleteTransportEvent(id: transport.id));
-              context.pop();
-            },
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 25),
+            child: PrimaryButton(
+              title: 'Delete card',
+              asset: 'delete',
+              onPressed: () {
+                context
+                    .read<TransportBloc>()
+                    .add(DeleteTransportEvent(id: transport.id));
+                context.pop();
+              },
+            ),
           ),
           const SizedBox(height: 46),
         ],

@@ -5,9 +5,14 @@ import '../../../core/config/app_colors.dart';
 import '../../splash/widgets/your_version_field.dart';
 
 class AddTransportType extends StatefulWidget {
-  const AddTransportType({super.key, required this.controller});
+  const AddTransportType({
+    super.key,
+    required this.controller,
+    required this.onChanged,
+  });
 
   final TextEditingController controller;
+  final Function() onChanged;
 
   @override
   State<AddTransportType> createState() => _AddTransportTypeState();
@@ -20,6 +25,7 @@ class _AddTransportTypeState extends State<AddTransportType> {
     setState(() {
       expanded = false;
       widget.controller.text = type;
+      widget.onChanged();
     });
   }
 

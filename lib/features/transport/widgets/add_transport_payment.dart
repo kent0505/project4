@@ -4,9 +4,14 @@ import 'package:flutter/material.dart';
 import '../../../core/config/app_colors.dart';
 
 class AddTransportPayment extends StatefulWidget {
-  const AddTransportPayment({super.key, required this.controller});
+  const AddTransportPayment({
+    super.key,
+    required this.controller,
+    required this.onChanged,
+  });
 
   final TextEditingController controller;
+  final Function() onChanged;
 
   @override
   State<AddTransportPayment> createState() => _AddTransportPaymentState();
@@ -19,6 +24,7 @@ class _AddTransportPaymentState extends State<AddTransportPayment> {
     setState(() {
       expanded = false;
       widget.controller.text = payment;
+      widget.onChanged();
     });
   }
 
